@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 import time
 
 # configure both button and buzzer pins
-button_pin = 11
+button_pin = 7
 buzzer_pin = 12
 
 # set board mode to GPIO.BOARD
