@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Author : Roni Gorodetsky
 # http://elecrow.com/
 
 import RPi.GPIO as GPIO
