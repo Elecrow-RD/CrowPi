@@ -55,7 +55,7 @@ def main():
                         # button pressed, activate it
                         buttons.activateButton(i,j)
                         # do nothing while button is being held down
-                        while(buttonHeldDown(i)):
+                        while(buttons.buttonHeldDown(i)):
                             pass
                 # return each output pin to high
                 GPIO.output(buttons.columnPins[j],1)
