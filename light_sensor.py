@@ -1,12 +1,19 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Author: Original author Matt Hawkins
-# Original Author Git: https://bitbucket.org/MattHawkinsUK/
-# Author website: https://www.raspberrypi-spy.co.uk
+# Author: Matt Hawkins
+# Author's Git: https://bitbucket.org/MattHawkinsUK/
+# Author's website: https://www.raspberrypi-spy.co.uk
 # http://elecrow.com/
 
+import RPi.GPIO as GPIO
 import smbus
 import time
+
+ # Find the right revision for bus driver
+if(GPIO.RPI_REVISION == 1):
+    bus = smbus.SMBus(0)
+else:
+    bus = smbus.SMBus(1)
 
 class LightSensor():
 
@@ -35,12 +42,6 @@ class LightSensor():
         # Start measurement at 1lx resolution. Time typically 120ms
         # Device is automatically set to Power Down after measurement.
         self.ONE_TIME_LOW_RES_MODE = 0x23
-
-        # Find the right revision for bus driver
-        if(GPIO.RPI_REVISION == 1):
-            self.bus = smbus.SMBus(0)
-        else:
-            self.bus = smbus.SMBus(1)
 
     def convertToNumber(self, data):
 
