@@ -45,7 +45,7 @@ class sg90:
 
 def main():
 
-    servo_pin = 22
+    servo_pin = 37
     s = sg90(servo_pin,0)
 
     try:
