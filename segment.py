@@ -40,4 +40,5 @@ try:
     # Wait a quarter second (less than 1 second to prevent colon blinking getting$
     time.sleep(0.25)
 except KeyboardInterrupt:
-  segment.clear()
+    segment.clear()
+    segment.write_display()
