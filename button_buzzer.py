@@ -19,7 +19,7 @@ GPIO.setup(buzzer_pin, GPIO.OUT)
 try:
     while True:
         # check if button pressed
-        if(GPIO.input(button_pin)):
+        if(GPIO.input(button_pin) == 0):
             # set buzzer on
             GPIO.output(buzzer_pin, GPIO.HIGH)
         else:
