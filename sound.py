@@ -17,6 +17,7 @@ try:
         # check if sound detected or not
         if(GPIO.input(sound_pin)):
             print('Sound Detected')
+            time.sleep(0.1)
 except KeyboardInterrupt:
     # CTRL+C detected, cleaning and quitting the script
     GPIO.cleanup()
