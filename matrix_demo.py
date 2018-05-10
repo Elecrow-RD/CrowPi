@@ -15,11 +15,11 @@ from luma.core.legacy import text, show_message
 from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_FONT, LCD_FONT
 
 
-def main(n, block_orientation, rotate):
+def main(cascaded, block_orientation, rotate):
     
     # create matrix device
     serial = spi(port=0, device=1, gpio=noop())
-    device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation, rotate=rotate or 0)
+    device = max7219(serial, cascaded=cascaded or 1, block_orientation=block_orientation, rotate=rotate or 0)
     # debugging purpose
     print("[-] Matrix initialized")
 
@@ -37,6 +37,6 @@ if __name__ == "__main__":
     # rotate = choices 0, 1, 2, 3, Rotate display 0=0°, 1=90°, 2=180°, 3=270°, default=0
    
     try:
-        main(cascaded=1, block_orientation=0, rotate=0)
+        main(cascaded=1, block_orientation=90, rotate=0)
     except KeyboardInterrupt:
         pass
