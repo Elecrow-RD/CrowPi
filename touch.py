@@ -10,6 +10,7 @@ touch_pin = 11
 
 # set board mode to GPIO.BOARD
 GPIO.setmode(GPIO.BOARD)
+
 # set GPIO pin to INPUT
 GPIO.setup(touch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 

@@ -2,7 +2,6 @@
 
 import time
 import datetime
-
 from Adafruit_LED_Backpack import SevenSegment
 
 # ===========================================================================
@@ -13,7 +12,7 @@ segment = SevenSegment.SevenSegment(address=0x70)
 # Initialize the display. Must be called once before using the display.
 segment.begin()
 
-print "Press CTRL+Z to exit"
+print("Press CTRL+Z to exit")
 
 # Continually update the time on a 4 char, 7-segment display
 try:

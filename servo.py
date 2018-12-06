@@ -10,11 +10,11 @@ import sys
 
 class sg90:
 
-  def __init__( self, pin, direction ):
+  def __init__( self, direction):
 
+    self.pin = 22
     GPIO.setmode( GPIO.BOARD )
-    GPIO.setup( pin, GPIO.OUT )
-    self.pin = int( pin )
+    GPIO.setup( self.pin, GPIO.OUT )
     self.direction = int( direction )
     self.servo = GPIO.PWM( self.pin, 50 )
     self.servo.start(0.0)
@@ -44,16 +44,15 @@ class sg90:
     self.direction = direction
 
 def main():
-
-    servo_pin = 37
-    s = sg90(servo_pin,0)
+    
+    s = sg90(0)
 
     try:
         while True:
-            print "Turn left ..."
+            print("Turn left ...")
             s.setdirection( 100, 10 )
             time.sleep(0.5)
-            print "Turn right ..."
+            print("Turn right ...")
             s.setdirection( -100, -10 )
             time.sleep(0.5)
     except KeyboardInterrupt:

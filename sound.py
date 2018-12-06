@@ -15,7 +15,7 @@ GPIO.setup(sound_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 try:
     while True:
         # check if sound detected or not
-        if(GPIO.input(sound_pin)):
+        if(GPIO.input(sound_pin)==GPIO.LOW):
             print('Sound Detected')
             time.sleep(0.1)
 except KeyboardInterrupt:

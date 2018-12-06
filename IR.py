@@ -32,4 +32,4 @@ def sendCmd(cmd):
 while True:
 
 	Out = lirc.nextcode()
-	print Out[0]
+	print(Out[0])

@@ -11,13 +11,13 @@ GPIO.setmode(GPIO.BOARD)
 TRIG = 36
 ECHO = 32
 
-print "Distance Measurement In Progress"
+print("Distance Measurement In Progress")
 
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ECHO,GPIO.IN)
 
 GPIO.output(TRIG, False)
-print "Waiting For Sensor To Settle"
+print("Waiting For Sensor To Settle")
 time.sleep(2)
 
 GPIO.output(TRIG, True)
@@ -36,6 +36,6 @@ distance = pulse_duration * 17150
 
 distance = round(distance, 2)
 
-print "Distance:",distance,"cm"
+print("Distance:",distance,"cm")
 
 GPIO.cleanup()
