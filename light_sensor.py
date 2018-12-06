@@ -59,7 +59,7 @@ def main():
     sensor = LightSensor()
     try:
         while True:
-            print "Light Level : " + str(sensor.readLight()) + " lx"
+            print("Light Level : " + str(sensor.readLight()) + " lx")
             time.sleep(0.5)
     except KeyboardInterrupt:
         pass
