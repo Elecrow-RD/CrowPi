@@ -9,8 +9,8 @@ try:
     import RPi.GPIO as GPIO
     SPIClass = spidev.SpiDev
     def_pin_rst = 0
-    def_pin_irq = 18
-    def_pin_mode = GPIO.BOARD
+    def_pin_irq = 24
+    def_pin_mode = GPIO.BCM
 except ImportError:
     # If they failed, try with Beaglebone
     import Adafruit_BBIO.SPI as SPI
@@ -23,8 +23,8 @@ except ImportError:
 
 class RFID(object):
     pin_rst = 0
-    pin_ce = 24
-    pin_irq = 18
+    pin_ce = 8
+    pin_irq = 24
 
     mode_idle = 0x00
     mode_auth = 0x0E
@@ -59,7 +59,7 @@ class RFID(object):
     irq = threading.Event()
 
     def __init__(self, bus=0, device=0, speed=1000000, pin_rst=def_pin_rst,
-            pin_ce=24, pin_irq=def_pin_irq, pin_mode = def_pin_mode):
+            pin_ce=8, pin_irq=def_pin_irq, pin_mode = def_pin_mode):
         self.pin_rst = pin_rst
         self.pin_ce = pin_ce
         self.pin_irq = pin_irq
@@ -93,8 +93,9 @@ class RFID(object):
         self.dev_write(0x2C, 0)
         self.dev_write(0x15, 0x40)
         self.dev_write(0x11, 0x3D)
-        self.dev_write(0x26, (self.antenna_gain<<4))
+        self.dev_write(0x26, (self.antenna_gain<<7))
         self.set_antenna(True)
+        self.set_antenna_gain(7)
 
     def spi_transfer(self, data):
         if self.pin_ce != 0:

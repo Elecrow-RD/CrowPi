@@ -1,0 +1,210 @@
+begin
+	prog = irexec
+	button = BUT_CHANNEL_DOWN
+	config = echo 'Channel Down pressed'
+end
+begin
+	prog = keys
+	button = BUT_CHANNEL_DOWN
+	config = CHAN_DWN
+end
+begin
+	prog = irexec
+	button = BUT_CHANNEL_SELECT
+	config = echo 'Channel SELECT pressed'
+end
+begin
+	prog = keys
+	button = BUT_CHANNEL_SELECT
+	config = CHAN_SEL
+end
+begin
+	prog = irexec
+	button = BUT_CHANNEL_UP
+	config = echo 'Channel UP pressed'
+end
+begin
+	prog = keys
+	button = BUT_CHANNEL_UP
+	config = CHAN_UP
+end
+begin
+	prog = irexec
+	button = BUT_PREV
+	config = echo 'PREV pressed'
+end
+begin
+	prog = keys
+	button = BUT_PREV
+	config = PREV
+end
+begin
+	prog = irexec
+	button = BUT_NEXT
+	config = echo 'NEXT pressed'
+end
+begin
+	prog = keys
+	button = BUT_NEXT
+	config = NEXT
+end
+begin
+	prog = irexec
+	button = BUT_PLAY
+	config = echo 'PLAY pressed'
+end
+begin
+	prog = keys
+	button = BUT_PLAY
+	config = PLAY
+end
+begin
+	prog = irexec
+	button = BUT_VOL_UP
+	config = echo 'VOL UP pressed'
+end
+begin
+	prog = keys
+	button = BUT_VOL_UP
+	config = VOL_UP
+end
+begin
+	prog = irexec
+	button = BUT_VOL_DOWN
+	config = echo 'VOL DOWN pressed'
+end
+begin
+	prog = keys
+	button = BUT_VOL_DOWN
+	config = VOL_DWN
+end
+begin
+	prog = irexec
+	button = BUT_EQ
+	config = echo 'EQ pressed'
+end
+begin
+	prog = keys
+	button = BUT_EQ
+	config = EQ
+end
+begin
+	prog = irexec
+	button = BUT_100
+	config = echo '100+ pressed'
+end
+begin
+	prog = keys
+	button = BUT_100
+	config = BUT_100+
+end
+begin
+	prog = irexec
+	button = BUT_200
+	config = echo '200+ pressed'
+end
+begin
+	prog = keys
+	button = BUT_200
+	config = BUT_200+
+end
+begin
+	prog = irexec
+	button = BUT_0
+	config = echo '0 pressed'
+end
+begin
+	prog = keys
+	button = BUT_0
+	config = BUT_0
+end
+begin
+	prog = irexec
+	button = BUT_1
+	config = echo '1 pressed'
+end
+begin
+	prog = keys
+	button = BUT_1
+	config = BUT_1
+end
+begin
+	prog = irexec
+	button = BUT_2
+	config = echo '2 pressed'
+end
+begin
+	prog = keys
+	button = BUT_2
+	config = BUT_2
+end
+begin
+	prog = irexec
+	button = BUT_3
+	config = echo '3 pressed'
+end
+begin
+	prog = keys
+	button = BUT_3
+	config = BUT_3
+end
+begin
+	prog = irexec
+	button = BUT_4
+	config = echo '4 pressed'
+end
+begin
+	prog = keys
+	button = BUT_4
+	config = BUT_4
+end
+begin
+	prog = irexec
+	button = BUT_5
+	config = echo '5 pressed'
+end
+begin
+	prog = keys
+	button = BUT_5
+	config = BUT_5
+end
+begin
+	prog = irexec
+	button = BUT_6
+	config = echo '6 pressed'
+end
+begin
+	prog = keys
+	button = BUT_6
+	config = BUT_6
+end
+begin
+	prog = irexec
+	button = BUT_7
+	config = echo '7 pressed'
+end
+begin
+	prog = keys
+	button = BUT_7
+	config = BUT_7
+end
+begin
+	prog = irexec
+	button = BUT_8
+	config = echo '8 pressed'
+end
+begin
+	prog = keys
+	button = BUT_8
+	config = BUT_8
+end
+begin
+	prog = irexec
+	button = BUT_9
+	config = echo '9 pressed'
+end
+begin
+	prog = keys
+	button = BUT_9
+	config = BUT_9
+end
