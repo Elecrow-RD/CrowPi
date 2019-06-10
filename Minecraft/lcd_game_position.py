@@ -22,8 +22,8 @@ while True:
 	# get player position
 	x, y, z = mc.player.getPos()
 	x, y, z = float(str(x)[:3]),float(str(y)[:3]),float(str(z)[:3])
-	pos = str(x)+", "+str(y)+", "+str(z)
-	print pos
+	pos = (str(x)+", "+str(y)+", "+str(z))
+	print(pos)
 	lcd.message('Position:\n%s' % pos)
 	time.sleep(1)
 	lcd.clear()
