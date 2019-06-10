@@ -24,11 +24,11 @@ while True:
     x,y,z = mc.player.getPos()
     if(GPIO.input(UP_PIN) == 0):
         mc.player.setPos(x-0.1, y, z+0.1)
-        print "Moving up ..."
+        print "Moving up ...")
     if(GPIO.input(DOWN_PIN) == 0):
         mc.player.setPos(x+0.1, y, z-0.1)
-        print "Moving down ..."
+        print("Moving down ...")
     if(GPIO.input(LEFT_PIN) == 0):
-        print "Moving left ..."
+        print("Moving left ...")
     if(GPIO.input(RIGHT_PIN) == 0):
-        print "Moving right ..."
+        print("Moving right ...")
