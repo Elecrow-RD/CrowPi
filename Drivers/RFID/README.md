@@ -1,18 +1,35 @@
-# Python RC522 library
+MFRC522-python
+==============
+A small class to interface with the NFC reader Module MFRC522 on the Raspberry Pi.
+This is a Python port of the example code for the NFC module MF522-AN.
 
-pi-rc522 consists of two Python classes for controlling an SPI RFID module "RC522" using Raspberry Pi or Beaglebone Black. You can get this module on AliExpress or eBay for $3.
+**Important notice:** This library has not being actively updated in almost four years.
+It might not work as intended on more recent Raspberry Pi devices. You might want to 
+take a look to the open pull-requests and forks to see other implementations and bug-fixes.
 
-Based on [MFRC522-python](https://github.com/mxgxw/MFRC522-python/blob/master/README.md).
-Original library link https://github.com/ondryaso/pi-rc522.git
-all rights reserved to @ondryaso this library been modified to work with the CrowPi.
+## Requirements
+This code requires you to have SPI-Py installed from the following repository:
+https://github.com/lthiery/SPI-Py
 
-get source code:
-```
-git clone https://github.com/elecrow-keen/CrowPi.git
-cd CrowPi/Drivers/RFID/
-python setup.py install
-```
+## Examples
+This repository includes a couple of examples showing how to read, write, and dump data from a chip. They are thoroughly commented, and should be easy to understand.
 
-You'll also need to install the [**spidev**](https://pypi.python.org/pypi/spidev) and [**RPi.GPIO**](https://pypi.python.org/pypi/RPi.GPIO) libraries on Raspberry PI, and [**Adafruit_BBIO**](https://github.com/adafruit/adafruit-beaglebone-io-python) on Beaglebone Black (which should be installed by default).
+## Pins
+You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
 
-[MIFARE datasheet](https://www.nxp.com/docs/en/data-sheet/MF1S50YYX_V1.pdf) can be useful.
+| Name | Pin # | Pin name   |
+|:------:|:-------:|:------------:|
+| SDA  | 24    | GPIO8      |
+| SCK  | 23    | GPIO11     |
+| MOSI | 19    | GPIO10     |
+| MISO | 21    | GPIO9      |
+| IRQ  | None  | None       |
+| GND  | Any   | Any Ground |
+| RST  | 22    | GPIO25     |
+| 3.3V | 1     | 3V3        |
+
+## Usage
+Import the class by importing MFRC522 in the top of your script. For more info see the examples.
+
+## License
+This code and examples are licensed under the GNU Lesser General Public License 3.0.

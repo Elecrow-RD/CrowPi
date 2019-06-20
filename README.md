@@ -66,6 +66,13 @@ sudo python setup.py install
 sudo python3 setup.py install
 cd ..
 ````
+RC-522 RFID:
+````
+cd RFID/SPI-Py
+sudo python setup.py install
+sudo python3 setup.py install
+cd ..
+````
 
 Afterwards you should have all the drivers ready both for Python2 and Python3.
 
@@ -92,8 +99,9 @@ and where it says
 change it to this
 ````
 # Uncomment this to enable the lirc-rpi module
-dtoverlay=lirc-rpi,gpio_in_pin=20
+dtoverlay=gpio-ir,gpio_pin=20
 ````
+previously it used to be ````dtoverlay=lirc-rpi```` but this one got deprecated in the newer version of raspbian.
 
 The last part would be to edit the modules configuration file
 ````
