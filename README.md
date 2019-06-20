@@ -16,6 +16,7 @@ Make sure you have the RPi.GPIO library by executing:
 
 ````
 sudo pip install RPi.GPIO
+sudo pip3 install RPi.GPIO
 ````
 
 Then run the command ```` sudo raspi-config ```` and under "interface options" make sure to enable SPI and I2C
