@@ -17,5 +17,5 @@ GPIO.setup(touch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 while True:
     if GPIO.input(touch_pin) == True: # look for button press
         mc.player.setPos(0, 0, 0) # teleport player
-        print "Teleported successfully!"
+        print("Teleported successfully!")
         time.sleep(0.5) # wait 0.5 seconds
