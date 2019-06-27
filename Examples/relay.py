@@ -19,4 +19,8 @@ GPIO.output(relay_pin, GPIO.LOW)
 time.sleep(0.5)
 # Close Relay
 GPIO.output(relay_pin, GPIO.HIGH)
+# Wait half a second
+time.sleep(0.5)
+# Close Relay
+GPIO.output(relay_pin, GPIO.LOW)
 GPIO.cleanup()
