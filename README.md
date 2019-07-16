@@ -5,7 +5,7 @@ Official Elecrow CrowPi Repository
 # What's new?
 
 Now Raspberry Pi 4 is officially supported, both for python3 and python2 scripts.
-There is some issue with LIRC library (IR sensor) if you are running Raspbian Buster release (Latest), We are working to fix it ASAP.
+There is some issue with LIRC Python3 library (IR sensor) if you are running Raspbian Buster release (Latest), We are working to fix it ASAP.
 
 # Preparation
 
@@ -86,16 +86,18 @@ Afterwards you should have all the drivers ready both for Python2 and Python3.
 
 The IR Receiver requires some extra installations to work.
 
-First, Install the lirc library and the python driver to support our custom python script
+First, Install the LIRC library and the python driver to support our custom python script
 ````
 sudo apt-get install lirc
 ````
 If it gives you errors, don't worry. It will be fixed later.
+
 Now run:
 ````
-sudo apt-get install python-lirc python3-lirc
+sudo pip install python-lirc
+sudo pip3 install python-lirc
 ````
-Note: On the latest Raspbian you might have some issues running the following commands, we are working on solution.
+Note: on the latest Raspbian pip3 install python-lirc will not work, we are working to solve it ASAP.
 
 Inside CrowPi/Drivers/LIRC folder that we cloned, there are 3 files
 you need to copy the files to the LIRC configuration directory, from the CrowPi folder run the following commands:
