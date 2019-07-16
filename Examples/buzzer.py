@@ -5,9 +5,9 @@
 import RPi.GPIO as GPIO
 import time
 
-buzzer_pin = 12
+buzzer_pin = 18
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzer_pin, GPIO.OUT)
 
 # Make buzzer sound

@@ -6,10 +6,10 @@ import RPi.GPIO as GPIO
 import time
 
 # define vibration pin
-vibration_pin = 13
+vibration_pin = 27
 
 # Set board mode to GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 # Setup vibration pin to OUTPUT
 GPIO.setup(vibration_pin, GPIO.OUT)

@@ -2,14 +2,19 @@
 
 Official Elecrow CrowPi Repository
 
-# Preperation
+# What's new?
+
+Now Raspberry Pi 4 is officially supported, both for python3 and python2 scripts.
+There is some issue with LIRC library (IR sensor) if you are running Raspbian Buster release (Latest), We are working to fix it ASAP.
+
+# Preparation
 
 We will need some dependencies to be installed on a clean image in order for everything to work.
 make sure to install those dependencies on your raspberry pi if you are not using our already-made image.
 
 ````
-sudo apt-get update
-sudo apt-get install build-essential python-dev python3-dev python-smbus python3-smbus python-pip python3-pip python-pil python3-pil
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install build-essential python-dev python3-dev python-smbus python3-smbus python-pip python3-pip python-pil python3-pil liblircclient-dev
 ````
 
 Make sure you have the RPi.GPIO library by executing:
@@ -79,16 +84,23 @@ Afterwards you should have all the drivers ready both for Python2 and Python3.
 
 # Setting up IR Receiver
 
-The IR Receiver requires some extra installations to work
-First, install the LIRC library:
+The IR Receiver requires some extra installations to work.
+
+First, Install the lirc library and the python driver to support our custom python script
 ````
 sudo apt-get install lirc
+````
+If it gives you errors, don't worry. It will be fixed later.
+Now run:
+````
 sudo apt-get install python-lirc python3-lirc
 ````
-After installing the following libraries, inside CrowPi/Drivers/LIRC folder that we cloned, there are 3 files
-you need to copy the files to the LIRC configuration directory:
+Note: On the latest Raspbian you might have some issues running the following commands, we are working on solution.
+
+Inside CrowPi/Drivers/LIRC folder that we cloned, there are 3 files
+you need to copy the files to the LIRC configuration directory, from the CrowPi folder run the following commands:
 ````
-/etc/lirc
+sudo cp Drivers/LIRC/* /etc/lirc
 ````
 
 After you moved the configuration file, edit your boot config file ````sudo nano /boot/config.txt````
@@ -102,14 +114,27 @@ change it to this
 # Uncomment this to enable the lirc-rpi module
 dtoverlay=gpio-ir,gpio_pin=20
 ````
-previously it used to be ````dtoverlay=lirc-rpi```` but this one got deprecated in the newer version of raspbian.
+previously it used to be ````dtoverlay=lirc-rpi```` but this one got deprecated in the newer version of Raspbian.
 
-The last part would be to edit the modules configuration file
+Execute the following commands to copy the configuration files
 ````
-sudo nano /etc/modules
+sudo cp /etc/lirc/lirc_options.conf.dist /etc/lirc/lirc_options.conf
+sudo cp /etc/lirc/lircd.conf.dist /etc/lirc/lircd.conf
 ````
-and add the following lines inside
+
+edit ````/etc/lirc/lirc_options.conf```` by writing the command ````sudo nano /etc/lirc/lirc_options.conf````
+and modify the following lines to be exact as here:
 ````
-lirc_dev
-lirc_rpi gpio_in_pin=20
+driver = default
+device = /dev/lirc0
+````
+
+now reboot
+````
+sudo reboot
+````
+
+Now run apt-get install Lirc once again to fix the previous errors if any
+````
+sudo apt-get install lirc
 ````

@@ -9,7 +9,7 @@ continue_reading = True
 # Funktion um cleanup Funktionen durchzuführen wenn das Script abgebrochen wird.
 def end_read(signal,frame):
     global continue_reading
-    print "Ctrl+C captured, ending read."
+    print("Ctrl+C captured, ending read.")
     continue_reading = False
     GPIO.cleanup()
 
@@ -20,14 +20,14 @@ MIFAREReader = MFRC522.MFRC522()
 
 # Diese Schleife Sucht dauerhaft nach Chips oder Karten. Wenn eine nah ist bezieht er die UID und identifiziert sich.
 while continue_reading:
-    
-    # SUcht Karten    
+
+    # SUcht Karten
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
     # Wenn Karte gefunden
     if status == MIFAREReader.MI_OK:
-        print "Card detected"
-    
+        print("Card detected")
+
     # UID der Karte erhalten
     (status,uid) = MIFAREReader.MFRC522_Anticoll()
 
@@ -35,8 +35,8 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
 
         # UID in Konsole ausgeben
-        print "Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3])
-    
+        print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+
         # Standard Schlüssel für Authentifizierungen
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
 
@@ -56,24 +56,24 @@ while continue_reading:
             for x in range(0,16):
                 data.append(0xFF)
 
-            print "Sector 8 looked like this:"
+            print("Sector 8 looked like this:")
             # Block 8 lesen
             MIFAREReader.MFRC522_Read(8)
             print "\n"
 
-            print "Sector 8 will now be filled with 0xFF:"
+            print("Sector 8 will now be filled with 0xFF:")
             # Dateien Schreiben
             MIFAREReader.MFRC522_Write(8, data)
             print "\n"
 
-            print "It now looks like this:"
+            print("It now looks like this:")
             # Überprüfen ob beschrieben wurde
             MIFAREReader.MFRC522_Read(8)
-            print "\n"
+            print("\n")
 
             MIFAREReader.MFRC522_StopCrypto1()
 
             # Sicherstellen das, das Kartenlesen eingestellt wird.
             continue_reading = False
         else:
-            print "Authentification error"
+            print("Authentification error")

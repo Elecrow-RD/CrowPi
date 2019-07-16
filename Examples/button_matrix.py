@@ -20,6 +20,9 @@ class ButtonMatrix():
         # gpio outputs for columns
         self.columnPins = [33,35,37,22]
 
+        # gpio outputs for columns
+        self.columnPins = [33,35,37,22]
+
         # define four inputs with pull up resistor
         for i in range(len(self.rowPins)):
             GPIO.setup(self.rowPins[i], GPIO.IN, pull_up_down = GPIO.PUD_UP)

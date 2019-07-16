@@ -6,10 +6,10 @@ import time
 import RPi.GPIO as GPIO
 
 # define tilt pin
-tilt_pin = 15
+tilt_pin = 22
 
 # set GPIO mode to GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # set puin as input
 GPIO.setup(tilt_pin, GPIO.IN)
 

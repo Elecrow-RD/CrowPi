@@ -6,10 +6,10 @@ import time
 import RPi.GPIO as GPIO
 
 # define LED pin
-led_pin = 37
+led_pin = 26
 
 # set GPIO mode to GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # set puin as input
 GPIO.setup(led_pin, GPIO.OUT)
 

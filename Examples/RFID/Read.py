@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
-#    Copyright 2014,2018 Mario Gomez <mario.gomez@teubi.co>
+# Copyright 2014,2018 Mario Gomez <mario.gomez@teubi.co>
 import RPi.GPIO as GPIO
 import MFRC522
 import signal
+
 continue_reading = True
-# Funktion um cleanup Funktionen durchzuführen wenn das Script abgebrochen wird.
+# Incase user wants to terminate, this function is exactly for that reason.
 def end_read(signal,frame):
     global continue_reading
     print("Ctrl+C captured, ending read.")
@@ -13,35 +14,35 @@ def end_read(signal,frame):
     GPIO.cleanup()
 
 signal.signal(signal.SIGINT, end_read)
-# Erstelle ein objekt aus der Klasse MFRC522
+# create the reader object
 MIFAREReader = MFRC522.MFRC522()
 
-# Wilkommensnachricht
-print("Willkommen beim MFRC522 Lese Beispiel.")
-print("Druecke STRG+C zum Beenden.")
+# Welcome greeting
+print("Welcome to MFRC522 RFID Read example")
+print("Press CTRL+C anytime to quit.")
 
-# Diese Schleife Sucht dauerhaft nach Chips oder Karten. Wenn eine nah ist bezieht er die UID und identifiziert sich.
+# The function will continue running to detect untill user said otherwise
 while continue_reading:
-    # Nach Chips und Karten scannen    
+    # detect touch of the card, get status and tag type
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
-    # Wenn eine Karte gefunden wurde
+    # check if card detected or not
     if status == MIFAREReader.MI_OK:
         print("Card detected")
-    
-    # Beziehe UID der Karte
+
+    # Get the RFID card uid and status
     (status,uid) = MIFAREReader.MFRC522_Anticoll()
 
-    # Wenn UID vorhanden fortfahren
+    # If status is alright, continue to the next stage
     if status == MIFAREReader.MI_OK:
         # Print UID
-        print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))    
-        # Standard Schlüssel für Authentifizierungen
-        key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]   
+        print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+        # standard key for rfid tags
+        key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
         # Select the scanned tag
         MIFAREReader.MFRC522_SelectTag(uid)
-        # Authentifizieren
+        # authenticate
         status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
-        # Prüfen ob authentifiziert
+        # check if authenticated successfully, read the data
         if status == MIFAREReader.MI_OK:
             MIFAREReader.MFRC522_Read(8)
             MIFAREReader.MFRC522_StopCrypto1()

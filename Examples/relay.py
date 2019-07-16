@@ -6,10 +6,10 @@ import RPi.GPIO as GPIO
 import time
 
 # define relay pin
-relay_pin = 40
+relay_pin = 21
 
 # set GPIO mode as GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # setup relay pin as OUTPUT
 GPIO.setup(relay_pin, GPIO.OUT)
 

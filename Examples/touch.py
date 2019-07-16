@@ -6,10 +6,10 @@ import RPi.GPIO as GPIO
 import time
 
 # define touch pin
-touch_pin = 11
+touch_pin = 17
 
 # set board mode to GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 # set GPIO pin to INPUT
 GPIO.setup(touch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)

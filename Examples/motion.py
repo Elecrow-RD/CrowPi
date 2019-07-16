@@ -6,10 +6,10 @@ import RPi.GPIO as GPIO
 import time
 
 # define motion pin
-motion_pin = 16
+motion_pin = 23
 
 # set GPIO as GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # set pin mode as INPUT
 GPIO.setup(motion_pin, GPIO.IN)
 

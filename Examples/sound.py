@@ -6,9 +6,9 @@ import RPi.GPIO as GPIO
 import time
 
 # define sound pin
-sound_pin = 18
+sound_pin = 24
 # set GPIO mode to GPIO.BOARD
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # setup pin as INPUT
 GPIO.setup(sound_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 

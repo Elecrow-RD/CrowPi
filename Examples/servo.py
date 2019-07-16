@@ -12,8 +12,8 @@ class sg90:
 
   def __init__( self, direction):
 
-    self.pin = 22
-    GPIO.setmode( GPIO.BOARD )
+    self.pin = 25
+    GPIO.setmode( GPIO.BCM )
     GPIO.setup( self.pin, GPIO.OUT )
     self.direction = int( direction )
     self.servo = GPIO.PWM( self.pin, 50 )
@@ -44,7 +44,7 @@ class sg90:
     self.direction = direction
 
 def main():
-    
+
     s = sg90(0)
 
     try:

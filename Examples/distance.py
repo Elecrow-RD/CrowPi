@@ -6,10 +6,10 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
-TRIG = 36
-ECHO = 32
+TRIG = 16
+ECHO = 12
 
 print("Distance Measurement In Progress")
 
@@ -36,6 +36,6 @@ distance = pulse_duration * 17150
 
 distance = round(distance, 2)
 
-print("Distance:",distance,"cm")
+print("Distance: %scm" % distance)
 
 GPIO.cleanup()
