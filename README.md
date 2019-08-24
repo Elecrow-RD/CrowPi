@@ -140,3 +140,12 @@ Now run apt-get install Lirc once again to fix the previous errors if any
 ````
 sudo apt-get install lirc
 ````
+
+Last step, stop the LIRC library so we could use the IR driver with our python script
+````
+sudo /etc/init.d/lirc stop
+````
+Note: if you get runtime error that the command cannot be found, maybe you have a different version of LIRC, try this command instead:
+````
+sudo /etc/init.d/lircd stop
+````
