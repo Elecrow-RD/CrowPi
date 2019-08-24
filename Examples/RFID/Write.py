@@ -1,12 +1,32 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+#
+#    Copyright 2014,2018 Mario Gomez <mario.gomez@teubi.co>
+#
+#    This file is part of MFRC522-Python
+#    MFRC522-Python is a simple Python implementation for
+#    the MFRC522 NFC Card Reader for the Raspberry Pi.
+#
+#    MFRC522-Python is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    MFRC522-Python is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#
+#    You should have received a copy of the GNU Lesser General Public License
+#    along with MFRC522-Python.  If not, see <http://www.gnu.org/licenses/>.
+
 import RPi.GPIO as GPIO
 import MFRC522
 import signal
 
 continue_reading = True
 
-# Funktion um cleanup Funktionen durchzuführen wenn das Script abgebrochen wird.
+# function to perform cleanup when the script is aborted
 def end_read(signal,frame):
     global continue_reading
     print("Ctrl+C captured, ending read.")
@@ -15,42 +35,42 @@ def end_read(signal,frame):
 
 signal.signal(signal.SIGINT, end_read)
 
-# Erstelle ein Objekt aus der Klasse MFRC522
+# Create an object of class MFRC522
 MIFAREReader = MFRC522.MFRC522()
 
-# Diese Schleife Sucht dauerhaft nach Chips oder Karten. Wenn eine nah ist bezieht er die UID und identifiziert sich.
+# Continue looking for cards till the script is manually aborted
 while continue_reading:
 
-    # SUcht Karten
+    # Search for NFC cards
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
-    # Wenn Karte gefunden
+    # Check if card detected
     if status == MIFAREReader.MI_OK:
         print("Card detected")
 
-    # UID der Karte erhalten
+    # get the data of the card that been touched
     (status,uid) = MIFAREReader.MFRC522_Anticoll()
 
-    # Wenn UID erhalten, fortfahren
+    # If UID received, continue
     if status == MIFAREReader.MI_OK:
 
         # UID in Konsole ausgeben
         print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
 
-        # Standard Schlüssel für Authentifizierungen
+        # Standard encryption key for the NFC card (default)
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
 
 
         MIFAREReader.MFRC522_SelectTag(uid)
 
-        # Authentifizieren
+        # Authorization
         status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
-        print "\n"
+        print("\n")
 
-        # Prüfen ob authentifiziert
+        # Check if authenticated
         if status == MIFAREReader.MI_OK:
 
-            # Variablen der Werte die auf der Karte gespeichert werden sollen.
+            # This is the data that we want to write into the NFC card
             data = [99, 11, 55, 66, 44, 111, 222, 210, 125, 153, 136, 199, 144, 177, 166, 188]
 
             for x in range(0,16):
@@ -59,21 +79,21 @@ while continue_reading:
             print("Sector 8 looked like this:")
             # Block 8 lesen
             MIFAREReader.MFRC522_Read(8)
-            print "\n"
+            print("\n")
 
             print("Sector 8 will now be filled with 0xFF:")
-            # Dateien Schreiben
+            # Write data into the NFC card
             MIFAREReader.MFRC522_Write(8, data)
-            print "\n"
+            print("\n")
 
             print("It now looks like this:")
-            # Überprüfen ob beschrieben wurde
+            # Checks how the card looks like after it's been written
             MIFAREReader.MFRC522_Read(8)
             print("\n")
 
             MIFAREReader.MFRC522_StopCrypto1()
 
-            # Sicherstellen das, das Kartenlesen eingestellt wird.
+            # Make sure that card reading is set.
             continue_reading = False
         else:
             print("Authentification error")

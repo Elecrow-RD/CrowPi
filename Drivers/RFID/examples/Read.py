@@ -41,7 +41,7 @@ MIFAREReader = MFRC522.MFRC522()
 print("Welcome to the MFRC522 read example.")
 print("Press CTRL + C to exit.")
 
-# Diese Schleife Sucht dauerhaft nach Chips oder Karten. Wenn eine nah ist bezieht er die UID und identifiziert sich.
+# This loop is constantly searching for NFC cards. If found one, gets the UID and identifies it.
 while continue_reading:
     # Scan for cards
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
