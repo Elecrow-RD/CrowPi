@@ -21,10 +21,10 @@ if J.isJsonStdioCLI():
   segment.clear()
   message = 123.4
   if (d["sensor-type"] == "ultrasonic"):
-    message = d["distance"]
+    message = float(d["distance"])
   segment.print_float(message, decimal_digits=1, justify_right=True)
   segment.write_display()
-  time.sleep (d["period-ms"] / 1000)
+  time.sleep (int(d["period-ms"]) / 1000)
   segment.clear()
   segment.write_display()
   exit()

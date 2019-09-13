@@ -44,11 +44,11 @@ distance = round(distance, 2)
 
 if J.isJsonStdioCLI():
   d = {
-    "json-stdio":True,
+    "json-stdio":"True",
     "sensor-type":"ultrasonic",
     "message":"Distance: " + str (distance),
-    "distance":distance,
-    "period-ms":1000
+    "distance":str(distance),
+    "period-ms":str(1000)
     }
   J.putStdIo(d)
 else:

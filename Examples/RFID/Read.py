@@ -43,14 +43,14 @@ while continue_reading:
         # Print UID
         if J.isJsonStdioCLI():
             d = {
-                "json-stdio":True,
+                "json-stdio":"True",
                 "sensor-type":"rfid",
                 "message":str (uid[0]) + ", " + str (uid[2]) + ", " + str (uid[3]) + ", " + str (uid[3]),
-                "uid0":uid[0],
-                "uid1":uid[1],
-                "uid2":uid[2],
-                "uid3":uid[3],
-                "period-ms":2000
+                "uid0":str(uid[0]),
+                "uid1":str(uid[1]),
+                "uid2":str(uid[2]),
+                "uid3":str(uid[3]),
+                "period-ms":"2000"
             }
             J.putStdIo(d)
             exit()

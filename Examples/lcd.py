@@ -20,7 +20,7 @@ try:
         d = J.getStdIn()
         lcd.set_backlight(0)
         lcd.message (d["message"])
-        time.sleep (d["period-ms"] / 1000)
+        time.sleep (int(d["period-ms"]) / 1000)
         lcd.clear()
         lcd.set_backlight(1)
         exit()
