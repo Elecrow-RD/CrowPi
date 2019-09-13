@@ -5,19 +5,25 @@
 
 import RPi.GPIO as GPIO
 import time
+import sys
+
+sys.path.insert (1, './json-stdio')
+import jsonstdio as J
 
 GPIO.setmode(GPIO.BCM)
 
 TRIG = 16
 ECHO = 12
 
-print("Distance Measurement In Progress")
+if not J.isJsonStdioCLI():
+  print("Distance Measurement In Progress")
 
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ECHO,GPIO.IN)
 
 GPIO.output(TRIG, False)
-print("Waiting For Sensor To Settle")
+if not J.isJsonStdioCLI():
+  print("Waiting For Sensor To Settle")
 time.sleep(2)
 
 GPIO.output(TRIG, True)
@@ -36,6 +42,16 @@ distance = pulse_duration * 17150
 
 distance = round(distance, 2)
 
-print("Distance: %scm" % distance)
+if J.isJsonStdioCLI():
+  d = {
+    "json-stdio":True,
+    "sensor-type":"ultrasonic",
+    "message":"Distance: " + str (distance),
+    "distance":distance,
+    "period-ms":1000
+    }
+  J.putStdIo(d)
+else:
+  print("Distance: %scm" % distance)
 
 GPIO.cleanup()

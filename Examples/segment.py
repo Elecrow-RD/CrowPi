@@ -4,6 +4,10 @@ import time
 import datetime
 from Adafruit_LED_Backpack import SevenSegment
 
+import sys
+sys.path.insert (1, './json-stdio')
+import jsonstdio as J
+
 # ===========================================================================
 # Clock Example
 # ===========================================================================
@@ -12,6 +16,19 @@ segment = SevenSegment.SevenSegment(address=0x70)
 # Initialize the display. Must be called once before using the display.
 segment.begin()
 
+if J.isJsonStdioCLI():
+  d = J.getStdIn()
+  segment.clear()
+  message = 123.4
+  if (d["sensor-type"] == "ultrasonic"):
+    message = d["distance"]
+  segment.print_float(message, decimal_digits=1, justify_right=True)
+  segment.write_display()
+  time.sleep (d["period-ms"] / 1000)
+  segment.clear()
+  segment.write_display()
+  exit()
+      
 print("Press CTRL+Z to exit")
 
 # Continually update the time on a 4 char, 7-segment display

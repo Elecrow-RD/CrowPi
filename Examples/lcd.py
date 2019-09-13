@@ -4,6 +4,9 @@
 # Example using a character LCD backpack.
 import time
 import Adafruit_CharLCD as LCD
+import sys
+sys.path.insert (1, './json-stdio')
+import jsonstdio as J
 
 # Define LCD column and row size for 16x2 LCD.
 lcd_columns = 16
@@ -13,6 +16,14 @@ lcd_rows    = 2
 lcd = LCD.Adafruit_CharLCDBackpack(address=0x21)
 
 try:
+    if J.isJsonStdioCLI():
+        d = J.getStdIn()
+        lcd.set_backlight(0)
+        lcd.message (d["message"])
+        time.sleep (d["period-ms"] / 1000)
+        lcd.clear()
+        lcd.set_backlight(1)
+        exit()
     # Turn backlight on
     lcd.set_backlight(0)
 

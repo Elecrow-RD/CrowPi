@@ -5,6 +5,10 @@ import RPi.GPIO as GPIO
 import MFRC522
 import signal
 
+import sys
+sys.path.insert (1, './json-stdio')
+import jsonstdio as J
+
 continue_reading = True
 # Incase user wants to terminate, this function is exactly for that reason.
 def end_read(signal,frame):
@@ -17,9 +21,10 @@ signal.signal(signal.SIGINT, end_read)
 # create the reader object
 MIFAREReader = MFRC522.MFRC522()
 
-# Welcome greeting
-print("Welcome to MFRC522 RFID Read example")
-print("Press CTRL+C anytime to quit.")
+if not J.isJsonStdioCLI():
+    # Welcome greeting
+    print("Welcome to MFRC522 RFID Read example")
+    print("Press CTRL+C anytime to quit.")
 
 # The function will continue running to detect untill user said otherwise
 while continue_reading:
@@ -27,7 +32,8 @@ while continue_reading:
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
     # check if card detected or not
     if status == MIFAREReader.MI_OK:
-        print("Card detected")
+        if not J.isJsonStdioCLI():
+            print("Card detected")
 
     # Get the RFID card uid and status
     (status,uid) = MIFAREReader.MFRC522_Anticoll()
@@ -35,7 +41,21 @@ while continue_reading:
     # If status is alright, continue to the next stage
     if status == MIFAREReader.MI_OK:
         # Print UID
-        print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
+        if J.isJsonStdioCLI():
+            d = {
+                "json-stdio":True,
+                "sensor-type":"rfid",
+                "message":str (uid[0]) + ", " + str (uid[2]) + ", " + str (uid[3]) + ", " + str (uid[3]),
+                "uid0":uid[0],
+                "uid1":uid[1],
+                "uid2":uid[2],
+                "uid3":uid[3],
+                "period-ms":2000
+            }
+            J.putStdIo(d)
+            exit()
+        else:
+            print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
         # standard key for rfid tags
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
         # Select the scanned tag
