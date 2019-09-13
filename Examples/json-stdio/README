@@ -1,0 +1,15 @@
+This module provides functions to input and output JSON with STDIO to
+let you plug together CrowPi sensors and displays using standard unix
+pipes.
+
+For instance, to send the distance sensor to the LCD:
+sudo python distance.py  --json-stdio | sudo python lcd.py --json-stdio
+
+To send the distance sensor to the segment display:
+sudo python distance.py  --json-stdio | sudo python segment.py --json-stdio
+
+To send the RFID sensor to the LCD:
+sudo python RFID/Read.py --json-stdio|sudo python lcd.py --json-stdio
+
+Status: At this stage, we've only plugged together a few sensors as an
+experiment. If it's of interest, we'll add more.
