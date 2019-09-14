@@ -15,14 +15,20 @@ lcd_rows    = 2
 # Initialize the LCD using the pins
 lcd = LCD.Adafruit_CharLCDBackpack(address=0x21)
 
+def displayAndWait (message, ms):
+    lcd.set_backlight(0)
+    lcd.message(message)
+    time.sleep (ms/1000)
+    lcd.clear()
+    lcd.set_backlight(1)
+
+J.fetchAndDisplaySensors(displayAndWait)
+
 try:
     if J.isJsonStdioCLI():
         d = J.getStdIn()
-        lcd.set_backlight(0)
-        lcd.message (d["message"])
-        time.sleep (int(d["period-ms"]) / 1000)
-        lcd.clear()
-        lcd.set_backlight(1)
+        displayAndWait(d["message"], int(d["period-ms"]))
+        J.readTozny("ultrasonic", displayAndWait)
         exit()
     # Turn backlight on
     lcd.set_backlight(0)
