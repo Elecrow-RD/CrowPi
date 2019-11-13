@@ -1,9 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-# Example using a character LCD backpack.
+import sys
 import time
 import Adafruit_CharLCD as LCD
+import Adafruit_DHT
+
+# set type of DHsensor
+sensor = 11
+# set pin number
+dh11_pin = 4
 
 # Define LCD column and row size for 16x2 LCD.
 lcd_columns = 16
@@ -13,60 +18,21 @@ lcd_rows    = 2
 lcd = LCD.Adafruit_CharLCDBackpack(address=0x21)
 
 try:
+    while True:
     # Turn backlight on
     lcd.set_backlight(0)
-
-    # Print a two line message
-    lcd.message('Hello\nworld!')
-
-    # Wait 5 seconds
-    time.sleep(5.0)
-
-    # Demo showing the cursor.
+    # get temperature and humidity
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    # clean the LCD screen
     lcd.clear()
-    lcd.show_cursor(True)
-    lcd.message('Show cursor')
-
-    time.sleep(5.0)
-
-    # Demo showing the blinking cursor.
-    lcd.clear()
-    lcd.blink(True)
-    lcd.message('Blink cursor')
-
-    time.sleep(5.0)
-
-    # Stop blinking and showing cursor.
-    lcd.show_cursor(False)
-    lcd.blink(False)
-
-    # Demo scrolling message right/left.
-    lcd.clear()
-    message = 'Scroll'
-    lcd.message(message)
-    for i in range(lcd_columns-len(message)):
-        time.sleep(0.5)
-        lcd.move_right()
-    for i in range(lcd_columns-len(message)):
-        time.sleep(0.5)
-        lcd.move_left()
-
-    # Demo turning backlight off and on.
-    lcd.clear()
-    lcd.message('Flash backlight\nin 5 seconds...')
-    time.sleep(5.0)
-    # Turn backlight off.
-    lcd.set_backlight(1)
-    time.sleep(2.0)
-    # Change message.
-    lcd.clear()
-    lcd.message('Goodbye!')
-    # Turn backlight on.
-    lcd.set_backlight(0)
-    # Turn backlight off.
-    time.sleep(2.0)
-    lcd.clear()
-    lcd.set_backlight(1)
+    # Un-comment the line below to convert the temperature to Fahrenheit.
+    # temperature = temperature * 9/5.0 + 32
+    if humidity is not None and temperature is not None:
+        lcd.message('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
+    else:
+        print('Failed to get reading, Retrying in 5 seconds!')
+    # wait 5 seconds for the next try
+    time.sleep(5)
 except KeyboardInterrupt:
     # Turn the screen off
     lcd.clear()
