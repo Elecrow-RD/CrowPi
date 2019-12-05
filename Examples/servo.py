@@ -50,10 +50,10 @@ def main():
     try:
         while True:
             print("Turn left ...")
-            s.setdirection( 100, 10 )
+            s.setdirection( 100, 80 )
             time.sleep(0.5)
             print("Turn right ...")
-            s.setdirection( -100, -10 )
+            s.setdirection( -100, 80 )
             time.sleep(0.5)
     except KeyboardInterrupt:
         s.cleanup()
