@@ -32,7 +32,7 @@ also expand the filesystem if you haven't done it already in the advanced option
 In case you are not using a pre-built CrowPi image and want to install everything by yourself, there are several steps you need to take
 First, you need to clone the entire repository to your CrowPi desktop by the Following commands
 ````
-git clone https://github.com/Elecrow-keen/CrowPi.git
+git clone https://github.com/Elecrow-RD/CrowPi.git
 cd CrowPi/Drivers
 ````
 Now when we are inside the driver directory, there are several drivers you need to know about:
