@@ -54,7 +54,7 @@ while continue_reading:
     # If UID received, continue
     if status == MIFAREReader.MI_OK:
 
-        # UID in Konsole ausgeben
+        # Print UID in console 
         print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))
 
         # Standard encryption key for the NFC card (default)
