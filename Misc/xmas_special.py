@@ -17,7 +17,7 @@ lcd = LCD.Adafruit_CharLCDBackpack(address=0x21)
 segment = SevenSegment.SevenSegment(address=0x70)
 segment.begin()
 
-tonePin = 12
+tonePin = 18
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(tonePin, GPIO.IN)
