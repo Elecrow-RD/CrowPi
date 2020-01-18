@@ -19,7 +19,7 @@ segment.begin()
 
 tonePin = 12
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(tonePin, GPIO.IN)
 GPIO.setup(tonePin, GPIO.OUT)
 p = GPIO.PWM(tonePin, 100)
