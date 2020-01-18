@@ -20,9 +20,9 @@ segment.begin()
 tonePin = 18
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(tonePin, GPIO.IN)
+#GPIO.setup(tonePin, GPIO.IN)
 GPIO.setup(tonePin, GPIO.OUT)
-p = GPIO.PWM(tonePin, 100)
+#p = GPIO.PWM(tonePin, 100)
 
 # setup the LCD for merry xmas
 lcd.set_backlight(0)
