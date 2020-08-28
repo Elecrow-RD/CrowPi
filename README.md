@@ -6,6 +6,7 @@ Official Elecrow CrowPi Repository
 
 Now Raspberry Pi 4 is officially supported, both for python3 and python2 scripts.
 There is some issue with LIRC Python3 library (IR sensor) if you are running Raspbian Buster release (Latest), We are working to fix it ASAP.
+
 Update August 28th: We've replaced the LIRC script with new IR script that works on the newest release & Python3, check examples folder for the new file.
 
 # Preparation
