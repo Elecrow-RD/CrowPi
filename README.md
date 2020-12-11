@@ -4,10 +4,7 @@ Official Elecrow CrowPi Repository
 
 # What's new?
 
-Now Raspberry Pi 4 is officially supported, both for python3 and python2 scripts.
-There is some issue with LIRC Python3 library (IR sensor) if you are running Raspbian Buster release (Latest), We are working to fix it ASAP.
-
-Update August 28th: We've replaced the LIRC script with new IR script that works on the newest release & Python3, check examples folder for the new file.
+Update Dec 11th: it's seems some packages are getting damaged in python2 due to the unsupported python version. Now we (and everyone else) will only support python3. no python2 support will be given.
 
 # Preparation
 
@@ -16,7 +13,7 @@ make sure to install those dependencies on your raspberry pi if you are not usin
 
 ````
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install build-essential python-dev python3-dev python-smbus python3-smbus python-pip python3-pip python-pil python3-pil liblircclient-dev
+sudo apt-get install build-essential python3-dev python3-smbus python3-pip python3-pil liblircclient-dev
 ````
 
 Make sure you have the RPi.GPIO library by executing:
@@ -49,35 +46,30 @@ You will need to install each of those drivers by running the following command 
 Adafruit_Python_CharLCD:
 ````
 cd Adafruit_Python_CharLCD
-sudo python setup.py install
 sudo python3 setup.py install
 cd ..
 ````
 Adafruit_Python_DHT:
 ````
 cd Adafruit_Python_DHT
-sudo python setup.py install
 sudo python3 setup.py install
 cd ..
 ````
 Adafruit_Python_LED_Backpack:
 ````
 cd Adafruit_Python_LED_Backpack
-sudo python setup.py install
 sudo python3 setup.py install
 cd ..
 ````
 Luma Matrix LED:
 ````
 cd luma.led_matrix
-sudo python setup.py install
 sudo python3 setup.py install
 cd ..
 ````
 RC-522 RFID:
 ````
 cd RFID/SPI-Py
-sudo python setup.py install
 sudo python3 setup.py install
 cd ..
 ````
@@ -96,7 +88,6 @@ If it gives you errors, don't worry. It will be fixed later.
 
 Now run:
 ````
-sudo pip install python-lirc
 sudo pip3 install python-lirc
 ````
 Note: on the latest Raspbian pip3 install python-lirc will not work, we are working to solve it ASAP.
