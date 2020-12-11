@@ -90,7 +90,6 @@ Now run:
 ````
 sudo pip3 install python-lirc
 ````
-Note: on the latest Raspbian pip3 install python-lirc will not work, we are working to solve it ASAP.
 
 Inside CrowPi/Drivers/LIRC folder that we cloned, there are 3 files
 you need to copy the files to the LIRC configuration directory, from the CrowPi folder run the following commands:
